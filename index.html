@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MailGuard — Protection intelligente de votre boîte mail</title>
+<meta name="description" content="MailGuard supprime automatiquement vos spams, newsletters et emails indésirables. Compatible Outlook et Gmail. Filtre intelligent par IA. Essai gratuit.">
+<meta name="keywords" content="nettoyeur email, anti-spam, supprimer emails, gmail, outlook, mailguard, filtre email, protection mail">
+<meta name="author" content="MailGuard">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mailguard.fr/">
+<meta property="og:title" content="MailGuard — Zéro spam, zéro scam">
+<meta property="og:description" content="Votre boîte mail mérite une armure. Filtrage intelligent, suppression automatique, compatible Outlook et Gmail.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mailguard.fr/">
+<meta property="og:image" content="https://mailguard.fr/og.png">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MailGuard — Protection email intelligente">
+<meta name="theme-color" content="#00b4ff">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"MailGuard","applicationCategory":"UtilityApplication","operatingSystem":"Windows 10, Windows 11","offers":[{"@type":"Offer","price":"0","priceCurrency":"EUR","name":"Gratuit"},{"@type":"Offer","price":"29.99","priceCurrency":"EUR","name":"Particulier"},{"@type":"Offer","price":"79.00","priceCurrency":"EUR","name":"Professionnel"},{"@type":"Offer","price":"249.99","priceCurrency":"EUR","name":"Entreprise"}],"description":"Protection intelligente de votre boîte mail contre les spams et newsletters","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"127"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg0:#03070e;--bg1:#060d1c;--bg2:#0a1628;--bg3:#0f1f38;
+  --blue:#00b4ff;--blue2:#0077cc;--blue-glow:rgba(0,180,255,.18);
+  --orange:#ff6b35;--green:#00e676;--red:#ff3d57;
+  --text:#e8f4ff;--muted:#6b8099;--dim:#3a5068;
+  --card-border:rgba(0,180,255,.12);
+  --font-display:'Outfit',sans-serif;
+  --font-body:'Manrope',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+  --radius:14px;--radius-sm:8px;
+  --transition:all .3s cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg0);color:var(--text);font-family:var(--font-body);line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg1)}
+::-webkit-scrollbar-thumb{background:var(--blue2);border-radius:3px}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+/* ── NAV ─────────────────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:0 6%;height:68px;display:flex;align-items:center;
+    justify-content:space-between;transition:var(--transition);
+    border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(3,7,14,.92);backdrop-filter:blur(20px);
+             border-bottom-color:var(--card-border)}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);
+          font-weight:800;font-size:1.25rem;letter-spacing:-.5px}
+.nav-logo .shield{width:34px;height:34px;background:linear-gradient(135deg,var(--blue),var(--blue2));
+                   border-radius:9px;display:grid;place-items:center;font-size:18px;
+                   box-shadow:0 0 20px var(--blue-glow)}
+.nav-links{display:flex;align-items:center;gap:36px}
+.nav-links a{font-size:.9rem;font-weight:500;color:var(--muted);
+             transition:var(--transition);position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;
+                    height:1.5px;background:var(--blue);transform:scaleX(0);
+                    transition:transform .3s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.btn-nav{background:linear-gradient(135deg,var(--blue),var(--blue2));
+         color:#fff;padding:9px 22px;border-radius:50px;font-size:.88rem;
+         font-weight:600;border:none;cursor:pointer;
+         box-shadow:0 0 24px rgba(0,180,255,.3);transition:var(--transition)}
+.btn-nav:hover{transform:translateY(-2px);box-shadow:0 4px 32px rgba(0,180,255,.45)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.nav-hamburger span{width:24px;height:2px;background:var(--text);border-radius:2px;
+                    transition:var(--transition)}
+.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;
+             background:rgba(3,7,14,.97);backdrop-filter:blur(20px);
+             flex-direction:column;padding:24px 6%;gap:20px;
+             border-bottom:1px solid var(--card-border);z-index:99}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1.05rem;font-weight:500;color:var(--muted);padding:8px 0;
+               border-bottom:1px solid var(--card-border)}
+
+/* ── HERO ────────────────────────────────────────── */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;
+      justify-content:center;overflow:hidden;padding:100px 6% 60px}
+#hero canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.7}
+.hero-glow{position:absolute;width:600px;height:600px;
+           background:radial-gradient(circle,rgba(0,180,255,.1) 0%,transparent 70%);
+           border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);
+           animation:pulse 4s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.6}
+                 50%{transform:translate(-50%,-50%) scale(1.15);opacity:1}}
+.hero-content{position:relative;z-index:1;text-align:center;max-width:820px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,180,255,.08);
+            border:1px solid rgba(0,180,255,.25);border-radius:50px;
+            padding:6px 16px;font-size:.8rem;font-family:var(--font-mono);
+            color:var(--blue);margin-bottom:28px;animation:fadeDown .8s ease both}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
+.hero-title{font-family:var(--font-display);font-size:clamp(2.6rem,5.5vw,4.2rem);
+            font-weight:900;line-height:1.1;letter-spacing:-2px;margin-bottom:12px;
+            animation:fadeUp .8s .1s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.hero-title .grad{background:linear-gradient(135deg,var(--blue) 0%,#7c6fff 50%,var(--blue) 100%);
+                  background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+                  animation:shimmer 3s linear infinite}
+@keyframes shimmer{0%{background-position:0%}100%{background-position:200%}}
+.hero-sub{font-size:1.15rem;color:var(--muted);max-width:560px;margin:0 auto 16px;
+          animation:fadeUp .8s .2s ease both}
+.hero-typing{font-family:var(--font-mono);font-size:1rem;color:var(--blue);
+             margin-bottom:40px;min-height:1.5em;animation:fadeUp .8s .3s ease both}
+.hero-typing::after{content:'|';animation:blink .7s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+          animation:fadeUp .8s .4s ease both}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;
+             background:linear-gradient(135deg,var(--blue),var(--blue2));
+             color:#fff;padding:14px 32px;border-radius:50px;font-weight:700;
+             font-size:1rem;border:none;cursor:pointer;
+             box-shadow:0 0 40px rgba(0,180,255,.35);transition:var(--transition)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 48px rgba(0,180,255,.5)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;
+           border:1.5px solid var(--card-border);color:var(--muted);
+           padding:13px 28px;border-radius:50px;font-weight:600;
+           font-size:.95rem;transition:var(--transition);cursor:pointer}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue);
+                 background:var(--blue-glow)}
+.hero-note{margin-top:20px;font-size:.8rem;color:var(--dim);
+           animation:fadeUp .8s .5s ease both}
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+             display:flex;flex-direction:column;align-items:center;gap:6px;
+             color:var(--dim);font-size:.75rem;animation:fadeIn 1s 1s ease both}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--blue),transparent);
+             animation:scrollAnim 1.8s ease-in-out infinite}
+@keyframes scrollAnim{0%{transform:scaleY(0);transform-origin:top}
+                      50%{transform:scaleY(1);transform-origin:top}
+                      51%{transform:scaleY(1);transform-origin:bottom}
+                      100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ── STATS ───────────────────────────────────────── */
+#stats{padding:40px 6%;background:var(--bg1);border-top:1px solid var(--card-border);
+       border-bottom:1px solid var(--card-border)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:960px;margin:0 auto}
+.stat-item{text-align:center;padding:24px;border-right:1px solid var(--card-border)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:var(--font-display);font-size:2.4rem;font-weight:800;
+          color:var(--blue);line-height:1}
+.stat-label{font-size:.8rem;color:var(--muted);margin-top:4px;font-weight:500}
+
+/* ── SHARED ──────────────────────────────────────── */
+section{padding:96px 6%}
+.section-tag{display:inline-block;font-family:var(--font-mono);font-size:.75rem;
+             color:var(--blue);letter-spacing:3px;text-transform:uppercase;
+             margin-bottom:14px}
+.section-title{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.8rem);
+               font-weight:800;letter-spacing:-1px;margin-bottom:16px;line-height:1.15}
+.section-sub{font-size:1.05rem;color:var(--muted);max-width:520px;margin-bottom:56px}
+.fade-up{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+.fade-up.visible{opacity:1;transform:none}
+.fade-up:nth-child(2){transition-delay:.1s}.fade-up:nth-child(3){transition-delay:.2s}
+.fade-up:nth-child(4){transition-delay:.3s}.fade-up:nth-child(5){transition-delay:.4s}
+.fade-up:nth-child(6){transition-delay:.5s}
+
+/* ── FEATURES ────────────────────────────────────── */
+#features{background:var(--bg0)}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto}
+.feat-card{background:var(--bg1);border:1px solid var(--card-border);border-radius:var(--radius);
+           padding:32px;transition:var(--transition);position:relative;overflow:hidden}
+.feat-card::before{content:'';position:absolute;inset:0;
+                   background:linear-gradient(135deg,var(--blue-glow),transparent);
+                   opacity:0;transition:opacity .3s}
+.feat-card:hover{border-color:rgba(0,180,255,.35);transform:translateY(-4px);
+                 box-shadow:0 16px 48px rgba(0,0,0,.4)}
+.feat-card:hover::before{opacity:1}
+.feat-icon{width:48px;height:48px;border-radius:12px;
+           background:linear-gradient(135deg,var(--blue-glow),rgba(0,180,255,.05));
+           border:1px solid rgba(0,180,255,.2);display:grid;place-items:center;
+           font-size:1.4rem;margin-bottom:20px;transition:var(--transition)}
+.feat-card:hover .feat-icon{box-shadow:0 0 24px var(--blue-glow)}
+.feat-title{font-family:var(--font-display);font-size:1.05rem;font-weight:700;margin-bottom:10px}
+.feat-desc{font-size:.88rem;color:var(--muted);line-height:1.7}
+.feat-tag{display:inline-block;margin-top:16px;font-family:var(--font-mono);
+          font-size:.72rem;color:var(--blue);background:rgba(0,180,255,.08);
+          padding:3px 10px;border-radius:50px;border:1px solid rgba(0,180,255,.2)}
+
+/* ── HOW IT WORKS ────────────────────────────────── */
+#how{background:var(--bg1)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+       max-width:960px;margin:0 auto;position:relative}
+.steps::before{content:'';position:absolute;top:36px;left:12.5%;right:12.5%;height:1px;
+               background:linear-gradient(90deg,transparent,var(--blue),transparent)}
+.step{text-align:center;padding:0 24px;position:relative}
+.step-num{width:72px;height:72px;border-radius:50%;border:2px solid var(--blue);
+          display:grid;place-items:center;margin:0 auto 20px;
+          font-family:var(--font-display);font-size:1.4rem;font-weight:800;
+          color:var(--blue);background:var(--bg1);position:relative;z-index:1;
+          transition:var(--transition)}
+.step:hover .step-num{background:var(--blue);color:var(--bg0);
+                       box-shadow:0 0 32px rgba(0,180,255,.5)}
+.step-title{font-family:var(--font-display);font-weight:700;font-size:1rem;margin-bottom:8px}
+.step-desc{font-size:.85rem;color:var(--muted)}
+
+/* ── PRICING ─────────────────────────────────────── */
+#pricing{background:var(--bg0)}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+              max-width:1000px;margin:0 auto}
+.price-card{background:var(--bg1);border:2px solid var(--card-border);
+            border-radius:var(--radius);padding:36px 30px;
+            position:relative;transition:var(--transition);overflow:hidden}
+.price-card.popular{border-color:var(--blue);
+                    box-shadow:0 0 60px rgba(0,180,255,.15)}
+.popular-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);
+               background:linear-gradient(135deg,var(--blue),var(--blue2));
+               color:#fff;font-size:.7rem;font-weight:700;letter-spacing:1px;
+               padding:5px 18px;border-radius:0 0 10px 10px;text-transform:uppercase}
+.price-card:hover:not(.popular){border-color:rgba(0,180,255,.3);transform:translateY(-4px)}
+.price-card.popular:hover{transform:translateY(-6px);box-shadow:0 12px 64px rgba(0,180,255,.25)}
+.price-plan{font-family:var(--font-display);font-size:1rem;font-weight:600;
+            color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+.price-amount{font-family:var(--font-display);font-size:3rem;font-weight:900;
+              line-height:1;margin-bottom:4px;color:var(--text)}
+.price-amount span{font-size:1rem;font-weight:400;color:var(--muted)}
+.price-note{font-size:.8rem;color:var(--dim);margin-bottom:28px}
+.price-divider{height:1px;background:var(--card-border);margin:20px 0}
+.price-feature{display:flex;align-items:center;gap:10px;
+               font-size:.88rem;padding:6px 0;color:var(--muted)}
+.price-feature .check{width:18px;height:18px;border-radius:50%;
+                       background:rgba(0,230,118,.1);display:grid;
+                       place-items:center;font-size:.6rem;color:var(--green);flex-shrink:0}
+.price-feature .highlight{color:var(--text);font-weight:600}
+.btn-price{display:block;width:100%;margin-top:28px;padding:13px;
+           border-radius:50px;font-weight:700;font-size:.95rem;
+           text-align:center;cursor:pointer;border:2px solid var(--card-border);
+           background:transparent;color:var(--muted);transition:var(--transition)}
+.btn-price.active{background:linear-gradient(135deg,var(--blue),var(--blue2));
+                  color:#fff;border-color:transparent;
+                  box-shadow:0 4px 32px rgba(0,180,255,.35)}
+.btn-price:hover:not(.active){border-color:var(--blue);color:var(--blue)}
+.btn-price.active:hover{transform:translateY(-2px);box-shadow:0 8px 48px rgba(0,180,255,.45)}
+
+/* ── DOWNLOAD ────────────────────────────────────── */
+#download{background:var(--bg1);text-align:center}
+.dl-box{background:linear-gradient(135deg,rgba(0,180,255,.06),rgba(124,111,255,.06));
+        border:1px solid var(--card-border);border-radius:20px;
+        padding:72px 48px;max-width:700px;margin:0 auto;position:relative;overflow:hidden}
+.dl-box::before{content:'';position:absolute;inset:0;
+                background:radial-gradient(circle at 50% 0%,rgba(0,180,255,.08),transparent 60%)}
+.dl-glow{position:absolute;top:-80px;left:50%;transform:translateX(-50%);
+         width:300px;height:160px;
+         background:radial-gradient(ellipse,rgba(0,180,255,.15),transparent);
+         pointer-events:none}
+.dl-title{font-family:var(--font-display);font-size:2.2rem;font-weight:900;
+          letter-spacing:-1px;margin-bottom:12px;position:relative}
+.dl-sub{color:var(--muted);margin-bottom:36px;position:relative}
+.dl-badges{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+           margin-top:28px;position:relative}
+.dl-badge{display:flex;align-items:center;gap:6px;font-size:.78rem;
+          color:var(--dim);font-family:var(--font-mono)}
+.dl-badge span{color:var(--green)}
+
+/* ── FAQ ─────────────────────────────────────────── */
+#faq{background:var(--bg0)}
+.faq-list{max-width:720px;margin:0 auto}
+.faq-item{border:1px solid var(--card-border);border-radius:var(--radius-sm);
+          margin-bottom:10px;overflow:hidden;transition:var(--transition)}
+.faq-item.open{border-color:rgba(0,180,255,.25)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;
+        padding:18px 22px;cursor:pointer;font-weight:600;font-size:.95rem;
+        user-select:none}
+.faq-q:hover{color:var(--blue)}
+.faq-arrow{font-size:.8rem;color:var(--muted);transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-arrow{transform:rotate(180deg);color:var(--blue)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease;
+        color:var(--muted);font-size:.9rem;line-height:1.8;padding:0 22px}
+.faq-item.open .faq-a{max-height:200px;padding:0 22px 18px}
+
+/* ── FOOTER ──────────────────────────────────────── */
+footer{background:var(--bg1);border-top:1px solid var(--card-border);padding:56px 6% 32px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;max-width:1100px;margin:0 auto 48px}
+.footer-brand .logo{font-family:var(--font-display);font-size:1.2rem;font-weight:800;
+                    margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.footer-brand p{font-size:.85rem;color:var(--muted);line-height:1.7;max-width:280px}
+.footer-col h4{font-family:var(--font-display);font-size:.85rem;font-weight:700;
+               letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;color:var(--muted)}
+.footer-col a{display:block;font-size:.85rem;color:var(--dim);
+              padding:5px 0;transition:var(--transition)}
+.footer-col a:hover{color:var(--blue);padding-left:4px}
+.footer-bottom{border-top:1px solid var(--card-border);padding-top:28px;
+               display:flex;justify-content:space-between;align-items:center;
+               font-size:.8rem;color:var(--dim);max-width:1100px;margin:0 auto;flex-wrap:wrap;gap:12px}
+.footer-bottom a{color:var(--dim);transition:var(--transition)}
+.footer-bottom a:hover{color:var(--blue)}
+.ssl-badge{display:flex;align-items:center;gap:6px;font-size:.75rem;
+           color:var(--green);font-family:var(--font-mono)}
+
+/* ── RESPONSIVE ──────────────────────────────────── */
+@media(max-width:900px){
+  .features-grid{grid-template-columns:repeat(2,1fr)}
+  .pricing-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:repeat(2,1fr);gap:40px}
+  .steps::before{display:none}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .stat-item{border-right:none;border-bottom:1px solid var(--card-border)}
+  .stat-item:nth-child(odd){border-right:1px solid var(--card-border)}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media(max-width:600px){
+  .nav-links,.btn-nav{display:none}
+  .nav-hamburger{display:flex}
+  .hero-title{font-size:2.2rem}
+  .features-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr}
+  .stat-item{border-right:none}
+  .dl-box{padding:40px 24px}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="/" class="nav-logo" aria-label="MailGuard accueil">
+    <div class="shield">✉</div>
+    MailGuard
+  </a>
+  <div class="nav-links">
+    <a href="#features">Fonctionnalités</a>
+    <a href="#how">Comment ça marche</a>
+    <a href="#pricing">Tarifs</a>
+    <a href="#faq">FAQ</a>
+    <a href="#download" class="btn-nav">⬇ Télécharger</a>
+  </div>
+  <div class="nav-hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#features">Fonctionnalités</a>
+  <a href="#how">Comment ça marche</a>
+  <a href="#pricing">Tarifs</a>
+  <a href="#faq">FAQ</a>
+  <a href="#download">⬇ Télécharger</a>
+</div>
+
+<!-- HERO -->
+<section id="hero" aria-label="Présentation MailGuard">
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-badge">✦ &nbsp;Protection email nouvelle génération</div>
+    <h1 class="hero-title">
+      Zéro spam.<br>
+      <span class="grad">Zéro scam.</span><br>
+      Votre mail, votre armure.
+    </h1>
+    <p class="hero-sub">MailGuard supprime automatiquement newsletters, promotions et emails indésirables. Compatible Outlook et Gmail.</p>
+    <div class="hero-typing" id="typing" aria-live="polite"></div>
+    <div class="hero-cta">
+      <a href="#download" class="btn-primary" aria-label="Télécharger MailGuard gratuitement">
+        ⬇ &nbsp;Télécharger gratuitement
+      </a>
+      <a href="#pricing" class="btn-ghost">Voir les offres →</a>
+    </div>
+    <p class="hero-note">✓ Windows 10/11 · ✓ Outlook + Gmail · ✓ 100 emails/jour gratuits</p>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="scroll-line"></div>
+    <span>défiler</span>
+  </div>
+</section>
+
+<!-- STATS -->
+<div id="stats" aria-label="Statistiques MailGuard">
+  <div class="stats-grid">
+    <div class="stat-item fade-up">
+      <div class="stat-num" data-target="2400000">0</div>
+      <div class="stat-label">Emails supprimés</div>
+    </div>
+    <div class="stat-item fade-up">
+      <div class="stat-num" data-target="4800">0</div>
+      <div class="stat-label">Utilisateurs actifs</div>
+    </div>
+    <div class="stat-item fade-up">
+      <div class="stat-num" data-target="99">0</div>
+      <div class="stat-label">% de précision du filtre</div>
+    </div>
+    <div class="stat-item fade-up">
+      <div class="stat-num" data-target="52">0</div>
+      <div class="stat-label">Suppressions simultanées</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features" aria-labelledby="features-title">
+  <div style="text-align:center;max-width:1100px;margin:0 auto">
+    <div class="section-tag fade-up">Fonctionnalités</div>
+    <h2 class="section-title fade-up" id="features-title">Tout ce dont vous avez besoin</h2>
+    <p class="section-sub fade-up" style="margin:0 auto 56px">Un outil puissant, conçu pour protéger votre productivité au quotidien.</p>
+    <div class="features-grid">
+      <article class="feat-card fade-up" aria-label="Filtre intelligent">
+        <div class="feat-icon" aria-hidden="true">🧠</div>
+        <h3 class="feat-title">Filtre intelligent par IA</h3>
+        <p class="feat-desc">Score de spam 0-100 basé sur l'analyse du sujet, de l'expéditeur et des mots-clés. Aucun faux positif sur les emails importants.</p>
+        <span class="feat-tag">Smart Filter</span>
+      </article>
+      <article class="feat-card fade-up" aria-label="Compatible Outlook et Gmail">
+        <div class="feat-icon" aria-hidden="true">🔗</div>
+        <h3 class="feat-title">Outlook + Gmail</h3>
+        <p class="feat-desc">Connectez simultanément vos comptes Microsoft et Google. Nettoyage unifié depuis une seule interface.</p>
+        <span class="feat-tag">Multi-provider</span>
+      </article>
+      <article class="feat-card fade-up" aria-label="Suppression parallèle">
+        <div class="feat-icon" aria-hidden="true">⚡</div>
+        <h3 class="feat-title">52 suppressions en parallèle</h3>
+        <p class="feat-desc">Moteur multi-thread qui traite jusqu'à 52 emails simultanément. Des milliers de mails supprimés en quelques minutes.</p>
+        <span class="feat-tag">ThreadPoolExecutor</span>
+      </article>
+      <article class="feat-card fade-up" aria-label="Mode automatique en arrière-plan">
+        <div class="feat-icon" aria-hidden="true">🤖</div>
+        <h3 class="feat-title">Arrière-plan automatique</h3>
+        <p class="feat-desc">MailGuard tourne en icône dans la barre des tâches et analyse vos nouveaux emails toutes les 5 minutes, sans vous déranger.</p>
+        <span class="feat-tag">Auto-scan</span>
+      </article>
+      <article class="feat-card fade-up" aria-label="Protection des emails importants">
+        <div class="feat-icon" aria-hidden="true">🛡️</div>
+        <h3 class="feat-title">Protection des emails sensibles</h3>
+        <p class="feat-desc">Détection automatique des emails critiques : sécurité, 2FA, paiements, contrats. Jamais supprimés, toujours protégés.</p>
+        <span class="feat-tag">Safe Mode</span>
+      </article>
+      <article class="feat-card fade-up" aria-label="Mises à jour automatiques">
+        <div class="feat-icon" aria-hidden="true">🔄</div>
+        <h3 class="feat-title">Mises à jour automatiques</h3>
+        <p class="feat-desc">Chaque nouveau patch est détecté et installé silencieusement au démarrage. Vous êtes toujours sur la dernière version.</p>
+        <span class="feat-tag">Auto-update</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" aria-labelledby="how-title">
+  <div style="text-align:center;max-width:960px;margin:0 auto">
+    <div class="section-tag fade-up">Processus</div>
+    <h2 class="section-title fade-up" id="how-title">Fonctionnement en 4 étapes</h2>
+    <p class="section-sub fade-up" style="margin:0 auto 64px">Simple, rapide, efficace.</p>
+    <div class="steps">
+      <div class="step fade-up">
+        <div class="step-num" aria-hidden="true">01</div>
+        <h3 class="step-title">Connexion sécurisée</h3>
+        <p class="step-desc">Authentification OAuth Microsoft ou Google. Aucun mot de passe stocké.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num" aria-hidden="true">02</div>
+        <h3 class="step-title">Analyse intelligente</h3>
+        <p class="step-desc">Le filtre IA évalue chaque email et lui attribue un score de spam.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num" aria-hidden="true">03</div>
+        <h3 class="step-title">Suppression parallèle</h3>
+        <p class="step-desc">52 threads suppriment simultanément les emails détectés comme spam.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num" aria-hidden="true">04</div>
+        <h3 class="step-title">Rapport & restauration</h3>
+        <p class="step-desc">Consultez les emails supprimés et restaurez d'un clic en cas d'erreur.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" aria-labelledby="pricing-title">
+  <div style="text-align:center;max-width:1000px;margin:0 auto">
+    <div class="section-tag fade-up">Tarifs</div>
+    <h2 class="section-title fade-up" id="pricing-title">Un plan pour chaque usage</h2>
+    <p class="section-sub fade-up" style="margin:0 auto 56px">Accès à vie · Paiement unique · Aucun abonnement</p>
+    <div class="pricing-grid">
+      <article class="price-card fade-up" aria-labelledby="plan-part">
+        <div class="price-plan" id="plan-part">Particulier</div>
+        <div class="price-amount">29<span>,99 €</span></div>
+        <div class="price-note">paiement unique · accès à vie</div>
+        <div class="price-divider"></div>
+        <div class="price-feature"><div class="check" aria-hidden="true">✓</div><span class="highlight">2 adresses email</span></div>
+        <div class="price-feature"><div class="check" aria-hidden="true">✓</div>Suppression illimitée</div>
+        <div class="price-feature"><div class="check" aria-hidden="true">✓</div>Outlook + Gmail</div>
+        <div class="price-feature"><div class="check" aria-hidden="true">✓</div>Scan automatique</div>
+        <div class="price-feature"><div class="check" aria-hidden="true">✓</div>Mises à jour à vie</div>
+        <button class="btn-price" onclick="pay('particulier')" aria-label="Acheter Particulier 29.99€">💳 Acheter — 29,99 €</button>
+      </article>
+      <article class="price-card popular fade-up" aria-labelledby="plan-pro">
+        <div class="popular-badge" aria-label="Offre populaire">⭐ Populaire</div>
+        <div class="price-plan" id="plan-pro" style="margin-top:16px">Professionnel</div>
+        <div class="price-amount">79,99<span> €</span></div>
+        <div class="price-note">paiement unique · accès à vie</div>
+        <div class="price-divider"></div>
+        <div class="price-feature"><div class="check" aria-hidden="true">✓</div><span class="highlight">10 adresses email</span></div>
+        <div class="price-feature"><div class="check" aria-hidden="true">✓</div>Suppression illimitée</div>
+        <div class="price-feature"><div class="check" aria-hidden="true">✓</div>Outlook + Gmail</div>
+        <div class="price-feature"><div class="check" aria-hidden="true">✓</div>Scan automatique optimisé</div>
+        <div class="price-feature"><div class="check" aria-hidden="true">✓</div>Paramètres avancés</div>
+        <div class="price-feature"><div class="check" aria-hidden="true">✓</div>Mises à jour à vie</div>
+        <button class="btn-price active" onclick="pay('professionnel')" aria-label="Acheter Professionnel 79€">💳 Acheter — 79,99 €</button>
+      </article>
+      <article class="price-card fade-up" aria-labelledby="plan-ent">
+        <div class="price-plan" id="plan-ent">Entreprise</div>
+        <div class="price-amount">249<span>,99 €</span></div>
+        <div class="price-note">paiement unique · accès à vie</div>
+        <div class="price-divider"></div>
+        <div class="price-feature"><div class="check" aria-hidden="true">✓</div><span class="highlight">Adresses illimitées</span></div>
+        <div class="price-feature"><div class="check" aria-hidden="true">✓</div>Suppression illimitée</div>
+        <div class="price-feature"><div class="check" aria-hidden="true">✓</div>Outlook + Gmail</div>
+        <div class="price-feature"><div class="check" aria-hidden="true">✓</div>Scan automatique</div>
+        <div class="price-feature"><div class="check" aria-hidden="true">✓</div>Paramètres avancés</div>
+        <div class="price-feature"><div class="check" aria-hidden="true">✓</div>Support prioritaire</div>
+        <div class="price-feature"><div class="check" aria-hidden="true">✓</div>Mises à jour à vie</div>
+        <button class="btn-price" onclick="pay('entreprise')" aria-label="Acheter Entreprise 249.99€">💳 Acheter — 249,99 €</button>
+      </article>
+    </div>
+    <p style="margin-top:28px;font-size:.82rem;color:var(--dim)">🔒 Paiement sécurisé par Stripe · SSL · Remboursement sous 14 jours</p>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section id="download" aria-labelledby="dl-title">
+  <div class="dl-box">
+    <div class="dl-glow" aria-hidden="true"></div>
+    <div class="section-tag fade-up" style="display:block;text-align:center">Téléchargement</div>
+    <h2 class="dl-title fade-up" id="dl-title">Commencez maintenant.<br>C'est gratuit.</h2>
+    <p class="dl-sub fade-up">100 emails supprimés par jour, accès complet aux filtres, sans carte bancaire.</p>
+    <a href="https://celebrated-gumdrop-84d9d6.netlify.app/MailGuard.exe"
+       class="btn-primary fade-up"
+       style="display:inline-flex"
+       aria-label="Télécharger MailGuard pour Windows"
+       download>
+      ⬇ &nbsp;Télécharger MailGuard.exe
+    </a>
+    <div class="dl-badges fade-up">
+      <div class="dl-badge"><span>✓</span> Windows 10/11</div>
+      <div class="dl-badge"><span>✓</span> Gratuit pour commencer</div>
+      <div class="dl-badge"><span>✓</span> Aucune installation requise</div>
+      <div class="dl-badge"><span>✓</span> Mise à jour automatique</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" aria-labelledby="faq-title">
+  <div style="max-width:720px;margin:0 auto">
+    <div class="section-tag fade-up" style="display:block;text-align:center">FAQ</div>
+    <h2 class="section-title fade-up" id="faq-title" style="text-align:center">Questions fréquentes</h2>
+    <div class="faq-list" style="margin-top:40px">
+      <div class="faq-item fade-up">
+        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">
+          MailGuard peut-il supprimer mes emails importants ?
+          <span class="faq-arrow" aria-hidden="true">▼</span>
+        </div>
+        <div class="faq-a">Non. MailGuard intègre une liste de mots-clés de protection (2FA, paiements, sécurité, contrats…) qui empêche définitivement la suppression de ces emails. Le filtre intelligent est calibré pour une précision maximale.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">
+          Mes identifiants de connexion sont-ils stockés ?
+          <span class="faq-arrow" aria-hidden="true">▼</span>
+        </div>
+        <div class="faq-a">Non. MailGuard utilise OAuth2 (Microsoft et Google) — vous vous connectez sur les serveurs officiels de Microsoft/Google. Aucun mot de passe ne transite par nos serveurs. Seul un token de session chiffré est stocké localement.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">
+          Comment restaurer un email supprimé par erreur ?
+          <span class="faq-arrow" aria-hidden="true">▼</span>
+        </div>
+        <div class="faq-a">MailGuard déplace les emails dans la corbeille, pas en suppression définitive. Depuis l'application, panneau "Corbeille", sélectionnez l'email et cliquez "Restaurer". Vous avez aussi un bouton "Vider définitivement" quand vous êtes sûr.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">
+          La version gratuite a-t-elle des restrictions ?
+          <span class="faq-arrow" aria-hidden="true">▼</span>
+        </div>
+        <div class="faq-a">La version gratuite est limitée à 100 emails supprimés par jour et 1 compte email. Les filtres intelligents, la connexion Gmail/Outlook et les mises à jour automatiques sont disponibles gratuitement.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">
+          Mon achat est-il valable à vie ?
+          <span class="faq-arrow" aria-hidden="true">▼</span>
+        </div>
+        <div class="faq-a">Oui. Toutes les offres MailGuard sont des paiements uniques avec accès à vie. Aucun abonnement, aucune surprise. Les mises à jour sont incluses indéfiniment.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION PAIEMENT / CONFIANCE -->
+<section id="payment" aria-labelledby="pay-title">
+  <div style="max-width:780px;margin:0 auto">
+    <div class="section-tag fade-up" style="display:block;text-align:center">Paiement</div>
+    <h2 class="section-title fade-up" id="pay-title" style="text-align:center">Comment ça fonctionne</h2>
+    <p style="color:var(--muted);text-align:center;margin-bottom:48px;font-size:.95rem" class="fade-up">
+      Sans compte requis · Paiement sécurisé · Clé envoyée en moins d'une minute
+    </p>
+    <div class="pay-grid">
+      <div class="pay-step fade-up">
+        <div class="pay-step-num">ÉTAPE 01</div>
+        <h3>Entrez votre email</h3>
+        <p>L'email sur lequel vous souhaitez recevoir votre clé de licence. Aucun compte à créer.</p>
+      </div>
+      <div class="pay-step fade-up">
+        <div class="pay-step-num">ÉTAPE 02</div>
+        <h3>Payez par carte</h3>
+        <p>Visa, Mastercard, Apple Pay. Formulaire sécurisé Stripe — vos données bancaires ne nous sont jamais transmises.</p>
+      </div>
+      <div class="pay-step fade-up">
+        <div class="pay-step-num">ÉTAPE 03</div>
+        <h3>Recevez votre clé</h3>
+        <p>Votre clé de licence arrive par email immédiatement après le paiement confirmé.</p>
+      </div>
+      <div class="pay-step fade-up">
+        <div class="pay-step-num">ÉTAPE 04</div>
+        <h3>Activez dans MailGuard</h3>
+        <p>Dans l'application, cliquez sur "💳 Activer Pro", collez votre clé et c'est activé.</p>
+      </div>
+    </div>
+    <div class="pay-trust fade-up">
+      <div class="pay-trust-item"><span>🔒</span> Chiffrement SSL 256-bit</div>
+      <div class="pay-trust-item"><span>💳</span> Propulsé par Stripe</div>
+      <div class="pay-trust-item"><span>📧</span> Clé par email instantané</div>
+      <div class="pay-trust-item"><span>↩</span> Remboursement sous 14 jours</div>
+      <div class="pay-trust-item"><span>♾️</span> Accès à vie garanti</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">
+        <div class="shield" style="width:28px;height:28px;font-size:14px">✉</div>
+        MailGuard
+      </div>
+      <p>Protection intelligente de votre boîte mail. Zéro spam, zéro scam. Vos emails aussi méritent une armure.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Produit</h4>
+      <a href="#features">Fonctionnalités</a>
+      <a href="#how">Comment ça marche</a>
+      <a href="#pricing">Tarifs</a>
+      <a href="#download">Télécharger</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#faq">FAQ</a>
+      <a href="mailto:contact@mailguard.fr">Contact</a>
+      <a href="/changelog">Changelog</a>
+    </div>
+    <div class="footer-col">
+      <h4>Légal</h4>
+      <a href="/privacy">Politique de confidentialité</a>
+      <a href="/terms">Conditions d'utilisation</a>
+      <a href="/refund">Remboursement</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 MailGuard. Tous droits réservés.</span>
+    <div class="ssl-badge">🔒 SSL · Stripe · OAuth2 sécurisé</div>
+    <div>
+      <a href="/privacy">Confidentialité</a> &nbsp;·&nbsp;
+      <a href="/terms">CGU</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ══ CONFIG STRIPE ══════════════════════════════════════════
+const STRIPE_LINKS = {
+  particulier:   'https://buy.stripe.com/6oU8wPeMVaqz1vy6Tx6Vq00',
+  professionnel: 'https://buy.stripe.com/7sY5kD5cl0PZa24cdR6Vq02',
+  entreprise:    'https://buy.stripe.com/4gMbJ16gp56fcac0v96Vq01',
+};
+function pay(plan) {
+  const url = STRIPE_LINKS[plan];
+  if(url && !url.includes('REMPLACER')) {
+    window.open(url, '_blank');
+  } else {
+    alert('Liens Stripe non configurés.\nRemplacez STRIPE_LINKS dans index.html.');
+  }
+}
+
+// ══ PARTICLES ══════════════════════════════════════════════
+(function(){
+  const canvas = document.getElementById('particles');
+  const ctx    = canvas.getContext('2d');
+  let W, H, particles = [], raf;
+  const N = 70, LINK = 120;
+
+  function resize(){
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  for(let i=0;i<N;i++) particles.push({
+    x:  Math.random()*W, y: Math.random()*H,
+    vx: (Math.random()-.5)*.4, vy: (Math.random()-.5)*.4,
+    r:  Math.random()*1.5+.5,
+    a:  Math.random()*.5+.2,
+    type: Math.random()<.15?'mail':'dot'
+  });
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(let i=0;i<N;i++){
+      const p=particles[i];
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0||p.x>W) p.vx*=-1;
+      if(p.y<0||p.y>H) p.vy*=-1;
+      ctx.save();
+      ctx.globalAlpha = p.a;
+      if(p.type==='mail'){
+        ctx.fillStyle='rgba(0,180,255,0.6)';
+        ctx.font='10px serif';
+        ctx.fillText('✉',p.x-5,p.y+4);
+      } else {
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle='rgba(0,180,255,0.8)';
+        ctx.fill();
+      }
+      ctx.restore();
+      for(let j=i+1;j<N;j++){
+        const q=particles[j];
+        const d=Math.hypot(p.x-q.x,p.y-q.y);
+        if(d<LINK){
+          ctx.beginPath();
+          ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y);
+          ctx.strokeStyle=`rgba(0,180,255,${.12*(1-d/LINK)})`;
+          ctx.lineWidth=.8;
+          ctx.stroke();
+        }
+      }
+    }
+    raf=requestAnimationFrame(draw);
+  }
+  draw();
+  // Stop animation when not visible for perf
+  const obs=new IntersectionObserver(e=>{
+    if(!e[0].isIntersecting){cancelAnimationFrame(raf);}else draw();
+  });
+  obs.observe(canvas);
+})();
+
+// ══ TYPING EFFECT ══════════════════════════════════════════
+(function(){
+  const el = document.getElementById('typing');
+  const texts = [
+    'Inbox propre en quelques secondes...',
+    '51 Instant Gaming supprimés ✓',
+    'Newsletters bloquées automatiquement...',
+    'Filtre intelligent actif 24h/24...',
+    'Vos emails importants sont protégés ✓',
+  ];
+  let ti=0, ci=0, del=false;
+  function tick(){
+    const t=texts[ti];
+    el.textContent = del ? t.slice(0,--ci) : t.slice(0,++ci);
+    if(!del && ci===t.length){ del=true; setTimeout(tick,2200); return; }
+    if(del && ci===0){ del=false; ti=(ti+1)%texts.length; }
+    setTimeout(tick, del?35:72);
+  }
+  setTimeout(tick,800);
+})();
+
+// ══ NAVBAR SCROLL ══════════════════════════════════════════
+const nav = document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled', window.scrollY>40);
+},{ passive:true });
+
+// ══ HAMBURGER MENU ═════════════════════════════════════════
+const ham = document.getElementById('hamburger');
+const mob = document.getElementById('mobileMenu');
+ham.addEventListener('click',()=>{
+  mob.classList.toggle('open');
+  const open=mob.classList.contains('open');
+  ham.setAttribute('aria-expanded',open);
+  ham.querySelectorAll('span').forEach((s,i)=>{
+    s.style.transform = open
+      ? [i===0?'rotate(45deg) translate(5px,5px)':'',
+         i===1?'opacity:0;scaleX(0)':'',
+         i===2?'rotate(-45deg) translate(5px,-5px)':''][i]
+      : '';
+    if(i===1) s.style.opacity = open?'0':'1';
+  });
+});
+mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  mob.classList.remove('open');
+}));
+
+// ══ SCROLL REVEAL ══════════════════════════════════════════
+const obs2=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade-up').forEach(el=>obs2.observe(el));
+
+// ══ COUNTER ANIMATION ══════════════════════════════════════
+function animateCount(el){
+  const target=+el.dataset.target;
+  const dur=2000, step=20;
+  let current=0;
+  const inc=target/(dur/step);
+  const t=setInterval(()=>{
+    current=Math.min(current+inc,target);
+    el.textContent = target>=1000000
+      ? (current/1000000).toFixed(1)+'M+'
+      : target>=1000
+        ? Math.floor(current/100)/10+'k+'
+        : Math.floor(current)+(target===99?'%':'+');
+    if(current>=target) clearInterval(t);
+  },step);
+}
+const cobs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('[data-target]').forEach(animateCount);
+      cobs.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+cobs.observe(document.getElementById('stats'));
+
+// ══ FAQ ACCORDION ══════════════════════════════════════════
+document.querySelectorAll('.faq-q').forEach(q=>{
+  function toggle(){
+    const item=q.parentElement;
+    const open=item.classList.toggle('open');
+    q.setAttribute('aria-expanded',open);
+  }
+  q.addEventListener('click',toggle);
+  q.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault();toggle(); }});
+});
+
+// ══ SMOOTH SCROLL ══════════════════════════════════════════
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href').slice(1);
+    const target=document.getElementById(id);
+    if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
+
+</script>
+</body>
+</html>
