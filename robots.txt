@@ -1,0 +1,17 @@
+# MailGuard — robots.txt
+User-agent: *
+Allow: /
+
+# Ressources statiques
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.svg
+Allow: /*.ico
+
+# Sitemap
+Sitemap: https://mailguard.fr/sitemap.xml
+
+# Délai de crawl recommandé
+Crawl-delay: 1
