@@ -313,14 +313,10 @@ def cancel():
     </body></html>"""
 
 if __name__ == "__main__":
+    import os
+    port = int(os.environ.get("PORT", 5000))  # Railway injecte PORT automatiquement
     print("═" * 52)
     print("  MailGuard Payment Server")
+    print(f"  Port : {port}")
     print("═" * 52)
-    print("  Webhook Stripe  → /webhook/stripe")
-    print("  Webhook PayPal  → /webhook/paypal")
-    print("  Dashboard admin → /admin")
-    print("  Liens de paiement :")
-    for pid in PLANS:
-        print(f"    /pay/{pid}")
-    print("═" * 52)
-    app.run(host="0.0.0.0", port=5000, debug=False)
+    app.run(host="0.0.0.0", port=port, debug=False)
