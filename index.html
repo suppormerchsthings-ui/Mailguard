@@ -144,7 +144,7 @@ nav.scrolled{background:rgba(3,7,14,.92);backdrop-filter:blur(20px);
 .stat-item{text-align:center;padding:24px;border-right:1px solid var(--card-border)}
 .stat-item:last-child{border-right:none}
 .stat-num{font-family:var(--font-display);font-size:2.4rem;font-weight:800;
-          color:var(--blue);line-height:1}
+          color:var(--blue);line-height:1;opacity:1!important}
 .stat-label{font-size:.8rem;color:var(--muted);margin-top:4px;font-weight:500}
 
 /* ── SHARED ──────────────────────────────────────── */
@@ -374,22 +374,22 @@ footer{background:var(--bg1);border-top:1px solid var(--card-border);padding:56p
 <!-- STATS -->
 <div id="stats" aria-label="Statistiques MailGuard">
   <div class="stats-grid">
-    <div class="stat-item fade-up">
+    <div class="stat-item">
       <div class="stat-num" style="font-size:1.6rem">🚫</div>
       <div class="stat-label" style="font-size:.95rem;color:#e8f4ff;font-weight:600">Aucun serveur</div>
       <div class="stat-label">Vos emails ne quittent jamais votre machine</div>
     </div>
-    <div class="stat-item fade-up">
+    <div class="stat-item">
       <div class="stat-num" style="font-size:1.6rem">🔒</div>
       <div class="stat-label" style="font-size:.95rem;color:#e8f4ff;font-weight:600">Données chiffrées</div>
       <div class="stat-label">Chiffrement local — zéro fuite possible</div>
     </div>
-    <div class="stat-item fade-up">
+    <div class="stat-item">
       <div class="stat-num" style="font-size:1.6rem">🧹</div>
       <div class="stat-label" style="font-size:.95rem;color:#e8f4ff;font-weight:600">Aucun résidu</div>
       <div class="stat-label">Rien de stocké, rien de revendu, jamais</div>
     </div>
-    <div class="stat-item fade-up">
+    <div class="stat-item">
       <div class="stat-num" style="font-size:1.6rem">🛡️</div>
       <div class="stat-label" style="font-size:.95rem;color:#e8f4ff;font-weight:600">OAuth2 sécurisé</div>
       <div class="stat-label">Zéro mot de passe stocké par MailGuard</div>
