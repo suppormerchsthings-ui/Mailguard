@@ -810,8 +810,10 @@ mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
 // ══ SCROLL REVEAL ══════════════════════════════════════════
 const obs2=new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
-},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+},{threshold:0,rootMargin:'0px 0px 0px 0px'});
 document.querySelectorAll('.fade-up').forEach(el=>obs2.observe(el));
+// Fallback : rendre tout visible après 1s si le navigateur bloque l'observer
+setTimeout(()=>document.querySelectorAll('.fade-up').forEach(el=>el.classList.add('visible')),800);
 
 // ══ COUNTER ANIMATION ══════════════════════════════════════
 function animateCount(el){
