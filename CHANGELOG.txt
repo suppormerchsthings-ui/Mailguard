@@ -1,0 +1,50 @@
+╔══════════════════════════════════════════════════════════════╗
+║                    MailGuard — Changelog                     ║
+╚══════════════════════════════════════════════════════════════╝
+
+────────────────────────────────────────────────────────────────
+v2.1.1 — Juin 2026
+────────────────────────────────────────────────────────────────
+CORRECTIONS
+  - Fix Gmail : credentials embarqués directement dans le code
+  - Fix Gmail : suppression du check bloquant avant fallback
+  - Fix auto-updater intégré dans mailguard.py (plus besoin de updater.py)
+  - Fix _show_welcome défini avant première utilisation
+  - Fix _S.delete → _api_call() dans _empty_trash_worker
+  - Fix timeout ReadTimeout : tous les appels passent par _api_call()
+  - Fix 429 Too Many Requests : retry + backoff exponentiel
+
+NOUVEAUTÉS
+  - Support Gmail + Outlook simultané (dual provider)
+  - Système de licence 3 plans : Particulier / Professionnel / Entreprise
+  - Vérification interne avant suppression (emails potentiellement importants)
+  - Page OAuth personnalisée MailGuard (remplace le localhost moche)
+  - Toast de bienvenue animé post-connexion
+  - Redirection webmail automatique après authentification
+  - Bouton unique "Passer à Pro" / "Paramètres Pro"
+  - _init_google_creds() au démarrage (garantit Gmail disponible)
+  - Pages légales : CGU, Confidentialité, Remboursement, Contact, Changelog
+  - Copyright mis à jour 2026
+  - Site déployé sur GitHub Pages
+
+────────────────────────────────────────────────────────────────
+v2.1.0 — Mai 2026
+────────────────────────────────────────────────────────────────
+NOUVEAUTÉS
+  - Support Outlook (Microsoft MSAL)
+  - Support Gmail (Google OAuth2)
+  - Filtre intelligent spam/newsletters (score 0-100)
+  - Filtre mots-clés sujet + expéditeur
+  - Suppression parallèle (ThreadPoolExecutor)
+  - System tray Windows (pystray)
+  - Scan automatique arrière-plan configurable
+  - Restauration depuis corbeille
+  - Vidage définitif corbeille
+  - Catégorisation emails (Important / Pro / Perso)
+  - Interface graphique Tkinter
+  - Système de licence avec clé
+  - Auto-updater via GitHub Releases
+  - Déploiement Railway (payment_server.py)
+  - Intégration Stripe (3 Payment Links)
+
+────────────────────────────────────────────────────────────────
