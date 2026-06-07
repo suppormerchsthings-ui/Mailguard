@@ -157,9 +157,7 @@ section{padding:96px 6%}
 .section-sub{font-size:1.05rem;color:var(--muted);max-width:520px;margin-bottom:56px}
 .fade-up{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
 .fade-up.visible{opacity:1;transform:none}
-.fade-up:nth-child(2){transition-delay:.1s}.fade-up:nth-child(3){transition-delay:.2s}
-.fade-up:nth-child(4){transition-delay:.3s}.fade-up:nth-child(5){transition-delay:.4s}
-.fade-up:nth-child(6){transition-delay:.5s}
+
 
 /* ── FEATURES ────────────────────────────────────── */
 #features{background:var(--bg0)}
@@ -402,41 +400,41 @@ footer{background:var(--bg1);border-top:1px solid var(--card-border);padding:56p
 <!-- FEATURES -->
 <section id="features" aria-labelledby="features-title">
   <div style="text-align:center;max-width:1100px;margin:0 auto">
-    <div class="section-tag fade-up">Fonctionnalités</div>
-    <h2 class="section-title fade-up" id="features-title">Tout ce dont vous avez besoin</h2>
-    <p class="section-sub fade-up" style="margin:0 auto 56px">Un outil puissant, conçu pour protéger votre productivité au quotidien.</p>
+    <div class="section-tag fade-in-anim">Fonctionnalités</div>
+    <h2 class="section-title fade-in-anim" id="features-title">Tout ce dont vous avez besoin</h2>
+    <p class="section-sub fade-in-anim" style="margin:0 auto 56px">Un outil puissant, conçu pour protéger votre productivité au quotidien.</p>
     <div class="features-grid">
-      <article class="feat-card fade-up" aria-label="Filtre intelligent">
+      <article class="feat-card fade-in-anim" aria-label="Filtre intelligent">
         <div class="feat-icon" aria-hidden="true">🧠</div>
         <h3 class="feat-title">Filtre intelligent par IA</h3>
         <p class="feat-desc">Score de spam 0-100 basé sur l'analyse du sujet, de l'expéditeur et des mots-clés. Aucun faux positif sur les emails importants.</p>
         <span class="feat-tag">Smart Filter</span>
       </article>
-      <article class="feat-card fade-up" aria-label="Compatible Outlook et Gmail">
+      <article class="feat-card fade-in-anim" aria-label="Compatible Outlook et Gmail">
         <div class="feat-icon" aria-hidden="true">🔗</div>
         <h3 class="feat-title">Outlook + Gmail</h3>
         <p class="feat-desc">Connectez simultanément vos comptes Microsoft et Google. Nettoyage unifié depuis une seule interface.</p>
         <span class="feat-tag">Multi-provider</span>
       </article>
-      <article class="feat-card fade-up" aria-label="Suppression parallèle">
+      <article class="feat-card fade-in-anim" aria-label="Suppression parallèle">
         <div class="feat-icon" aria-hidden="true">⚡</div>
         <h3 class="feat-title">52 suppressions en parallèle</h3>
         <p class="feat-desc">Moteur multi-thread qui traite jusqu'à 52 emails simultanément. Des milliers de mails supprimés en quelques minutes.</p>
         <span class="feat-tag">ThreadPoolExecutor</span>
       </article>
-      <article class="feat-card fade-up" aria-label="Mode automatique en arrière-plan">
+      <article class="feat-card fade-in-anim" aria-label="Mode automatique en arrière-plan">
         <div class="feat-icon" aria-hidden="true">🤖</div>
         <h3 class="feat-title">Arrière-plan automatique</h3>
         <p class="feat-desc">MailGuard tourne en icône dans la barre des tâches et analyse vos nouveaux emails toutes les 5 minutes, sans vous déranger.</p>
         <span class="feat-tag">Auto-scan</span>
       </article>
-      <article class="feat-card fade-up" aria-label="Protection des emails importants">
+      <article class="feat-card fade-in-anim" aria-label="Protection des emails importants">
         <div class="feat-icon" aria-hidden="true">🛡️</div>
         <h3 class="feat-title">Protection des emails sensibles</h3>
         <p class="feat-desc">Détection automatique des emails critiques : sécurité, 2FA, paiements, contrats. Jamais supprimés, toujours protégés.</p>
         <span class="feat-tag">Safe Mode</span>
       </article>
-      <article class="feat-card fade-up" aria-label="Mises à jour automatiques">
+      <article class="feat-card fade-in-anim" aria-label="Mises à jour automatiques">
         <div class="feat-icon" aria-hidden="true">🔄</div>
         <h3 class="feat-title">Mises à jour automatiques</h3>
         <p class="feat-desc">Chaque nouveau patch est détecté et installé silencieusement au démarrage. Vous êtes toujours sur la dernière version.</p>
@@ -449,26 +447,26 @@ footer{background:var(--bg1);border-top:1px solid var(--card-border);padding:56p
 <!-- HOW IT WORKS -->
 <section id="how" aria-labelledby="how-title">
   <div style="text-align:center;max-width:960px;margin:0 auto">
-    <div class="section-tag fade-up">Processus</div>
-    <h2 class="section-title fade-up" id="how-title">Fonctionnement en 4 étapes</h2>
-    <p class="section-sub fade-up" style="margin:0 auto 64px">Simple, rapide, efficace.</p>
+    <div class="section-tag fade-in-anim">Processus</div>
+    <h2 class="section-title fade-in-anim" id="how-title">Fonctionnement en 4 étapes</h2>
+    <p class="section-sub fade-in-anim" style="margin:0 auto 64px">Simple, rapide, efficace.</p>
     <div class="steps">
-      <div class="step fade-up">
+      <div class="step fade-in-anim">
         <div class="step-num" aria-hidden="true">01</div>
         <h3 class="step-title">Connexion sécurisée</h3>
         <p class="step-desc">Authentification OAuth Microsoft ou Google. Aucun mot de passe stocké.</p>
       </div>
-      <div class="step fade-up">
+      <div class="step fade-in-anim">
         <div class="step-num" aria-hidden="true">02</div>
         <h3 class="step-title">Analyse intelligente</h3>
         <p class="step-desc">Le filtre IA évalue chaque email et lui attribue un score de spam.</p>
       </div>
-      <div class="step fade-up">
+      <div class="step fade-in-anim">
         <div class="step-num" aria-hidden="true">03</div>
         <h3 class="step-title">Suppression parallèle</h3>
         <p class="step-desc">52 threads suppriment simultanément les emails détectés comme spam.</p>
       </div>
-      <div class="step fade-up">
+      <div class="step fade-in-anim">
         <div class="step-num" aria-hidden="true">04</div>
         <h3 class="step-title">Rapport & restauration</h3>
         <p class="step-desc">Consultez les emails supprimés et restaurez d'un clic en cas d'erreur.</p>
@@ -480,11 +478,11 @@ footer{background:var(--bg1);border-top:1px solid var(--card-border);padding:56p
 <!-- PRICING -->
 <section id="pricing" aria-labelledby="pricing-title">
   <div style="text-align:center;max-width:1000px;margin:0 auto">
-    <div class="section-tag fade-up">Tarifs</div>
-    <h2 class="section-title fade-up" id="pricing-title">Un plan pour chaque usage</h2>
-    <p class="section-sub fade-up" style="margin:0 auto 56px">Accès à vie · Paiement unique · Aucun abonnement</p>
+    <div class="section-tag fade-in-anim">Tarifs</div>
+    <h2 class="section-title fade-in-anim" id="pricing-title">Un plan pour chaque usage</h2>
+    <p class="section-sub fade-in-anim" style="margin:0 auto 56px">Accès à vie · Paiement unique · Aucun abonnement</p>
     <div class="pricing-grid">
-      <article class="price-card fade-up" aria-labelledby="plan-part">
+      <article class="price-card fade-in-anim" aria-labelledby="plan-part">
         <div class="price-plan" id="plan-part">Particulier</div>
         <div class="price-amount">29<span>,99 €</span></div>
         <div class="price-note">paiement unique · accès à vie</div>
@@ -496,7 +494,7 @@ footer{background:var(--bg1);border-top:1px solid var(--card-border);padding:56p
         <div class="price-feature"><div class="check" aria-hidden="true">✓</div>Mises à jour à vie</div>
         <button class="btn-price" onclick="pay('particulier')" aria-label="Acheter Particulier 29.99€">💳 Acheter — 29,99 €</button>
       </article>
-      <article class="price-card popular fade-up" aria-labelledby="plan-pro">
+      <article class="price-card popular fade-in-anim" aria-labelledby="plan-pro">
         <div class="popular-badge" aria-label="Offre populaire">⭐ Populaire</div>
         <div class="price-plan" id="plan-pro" style="margin-top:16px">Professionnel</div>
         <div class="price-amount">79,99<span> €</span></div>
@@ -510,7 +508,7 @@ footer{background:var(--bg1);border-top:1px solid var(--card-border);padding:56p
         <div class="price-feature"><div class="check" aria-hidden="true">✓</div>Mises à jour à vie</div>
         <button class="btn-price active" onclick="pay('professionnel')" aria-label="Acheter Professionnel 79€">💳 Acheter — 79,99 €</button>
       </article>
-      <article class="price-card fade-up" aria-labelledby="plan-ent">
+      <article class="price-card fade-in-anim" aria-labelledby="plan-ent">
         <div class="price-plan" id="plan-ent">Entreprise</div>
         <div class="price-amount">249<span>,99 €</span></div>
         <div class="price-note">paiement unique · accès à vie</div>
@@ -533,15 +531,15 @@ footer{background:var(--bg1);border-top:1px solid var(--card-border);padding:56p
 <section id="download" aria-labelledby="dl-title">
   <div class="dl-box">
     <div class="dl-glow" aria-hidden="true"></div>
-    <div class="section-tag fade-up" style="display:block;text-align:center">Téléchargement</div>
-    <h2 class="dl-title fade-up" id="dl-title">Commencez maintenant.<br>C'est gratuit.</h2>
-    <p class="dl-sub fade-up">100 emails supprimés par jour, accès complet aux filtres, sans carte bancaire.</p>
+    <div class="section-tag fade-in-anim" style="display:block;text-align:center">Téléchargement</div>
+    <h2 class="dl-title fade-in-anim" id="dl-title">Commencez maintenant.<br>C'est gratuit.</h2>
+    <p class="dl-sub fade-in-anim">100 emails supprimés par jour, accès complet aux filtres, sans carte bancaire.</p>
     <a href="https://github.com/suppormerchsthings-ui/Mailguard/releases/download/v2.1/MailGuard.exe"
        class="btn-primary"
        style="display:inline-flex;position:relative;z-index:10">
       ⬇ &nbsp;Télécharger MailGuard.exe
     </a>
-    <div class="dl-badges fade-up">
+    <div class="dl-badges fade-in-anim">
       <div class="dl-badge"><span>✓</span> Windows 10/11</div>
       <div class="dl-badge"><span>✓</span> Gratuit pour commencer</div>
       <div class="dl-badge"><span>✓</span> Aucune installation requise</div>
@@ -553,38 +551,38 @@ footer{background:var(--bg1);border-top:1px solid var(--card-border);padding:56p
 <!-- FAQ -->
 <section id="faq" aria-labelledby="faq-title">
   <div style="max-width:720px;margin:0 auto">
-    <div class="section-tag fade-up" style="display:block;text-align:center">FAQ</div>
-    <h2 class="section-title fade-up" id="faq-title" style="text-align:center">Questions fréquentes</h2>
+    <div class="section-tag fade-in-anim" style="display:block;text-align:center">FAQ</div>
+    <h2 class="section-title fade-in-anim" id="faq-title" style="text-align:center">Questions fréquentes</h2>
     <div class="faq-list" style="margin-top:40px">
-      <div class="faq-item fade-up">
+      <div class="faq-item fade-in-anim">
         <div class="faq-q" role="button" tabindex="0" aria-expanded="false">
           MailGuard peut-il supprimer mes emails importants ?
           <span class="faq-arrow" aria-hidden="true">▼</span>
         </div>
         <div class="faq-a">Non. MailGuard intègre une liste de mots-clés de protection (2FA, paiements, sécurité, contrats…) qui empêche définitivement la suppression de ces emails. Le filtre intelligent est calibré pour une précision maximale.</div>
       </div>
-      <div class="faq-item fade-up">
+      <div class="faq-item fade-in-anim">
         <div class="faq-q" role="button" tabindex="0" aria-expanded="false">
           Mes identifiants de connexion sont-ils stockés ?
           <span class="faq-arrow" aria-hidden="true">▼</span>
         </div>
         <div class="faq-a">Non. MailGuard utilise OAuth2 (Microsoft et Google) — vous vous connectez sur les serveurs officiels de Microsoft/Google. Aucun mot de passe ne transite par nos serveurs. Seul un token de session chiffré est stocké localement.</div>
       </div>
-      <div class="faq-item fade-up">
+      <div class="faq-item fade-in-anim">
         <div class="faq-q" role="button" tabindex="0" aria-expanded="false">
           Comment restaurer un email supprimé par erreur ?
           <span class="faq-arrow" aria-hidden="true">▼</span>
         </div>
         <div class="faq-a">MailGuard déplace les emails dans la corbeille, pas en suppression définitive. Depuis l'application, panneau "Corbeille", sélectionnez l'email et cliquez "Restaurer". Vous avez aussi un bouton "Vider définitivement" quand vous êtes sûr.</div>
       </div>
-      <div class="faq-item fade-up">
+      <div class="faq-item fade-in-anim">
         <div class="faq-q" role="button" tabindex="0" aria-expanded="false">
           La version gratuite a-t-elle des restrictions ?
           <span class="faq-arrow" aria-hidden="true">▼</span>
         </div>
         <div class="faq-a">La version gratuite est limitée à 100 emails supprimés par jour et 1 compte email. Les filtres intelligents, la connexion Gmail/Outlook et les mises à jour automatiques sont disponibles gratuitement.</div>
       </div>
-      <div class="faq-item fade-up">
+      <div class="faq-item fade-in-anim">
         <div class="faq-q" role="button" tabindex="0" aria-expanded="false">
           Mon achat est-il valable à vie ?
           <span class="faq-arrow" aria-hidden="true">▼</span>
@@ -598,28 +596,28 @@ footer{background:var(--bg1);border-top:1px solid var(--card-border);padding:56p
 <!-- SECTION PAIEMENT / CONFIANCE -->
 <section id="payment" aria-labelledby="pay-title">
   <div style="max-width:780px;margin:0 auto">
-    <div class="section-tag fade-up" style="display:block;text-align:center">Paiement</div>
-    <h2 class="section-title fade-up" id="pay-title" style="text-align:center">Comment ça fonctionne</h2>
+    <div class="section-tag fade-in-anim" style="display:block;text-align:center">Paiement</div>
+    <h2 class="section-title fade-in-anim" id="pay-title" style="text-align:center">Comment ça fonctionne</h2>
     <p style="color:var(--muted);text-align:center;margin-bottom:48px;font-size:.95rem" class="fade-up">
       Sans compte requis · Paiement sécurisé · Clé envoyée en moins d'une minute
     </p>
     <div class="pay-grid">
-      <div class="pay-step fade-up">
+      <div class="pay-step fade-in-anim">
         <div class="pay-step-num">ÉTAPE 01</div>
         <h3>Entrez votre email</h3>
         <p>L'email sur lequel vous souhaitez recevoir votre clé de licence. Aucun compte à créer.</p>
       </div>
-      <div class="pay-step fade-up">
+      <div class="pay-step fade-in-anim">
         <div class="pay-step-num">ÉTAPE 02</div>
         <h3>Payez par carte</h3>
         <p>Visa, Mastercard, Apple Pay. Formulaire sécurisé Stripe — vos données bancaires ne nous sont jamais transmises.</p>
       </div>
-      <div class="pay-step fade-up">
+      <div class="pay-step fade-in-anim">
         <div class="pay-step-num">ÉTAPE 03</div>
         <h3>Recevez votre clé</h3>
         <p>Votre clé de licence arrive par email immédiatement après le paiement confirmé.</p>
       </div>
-      <div class="pay-step fade-up">
+      <div class="pay-step fade-in-anim">
         <div class="pay-step-num">ÉTAPE 04</div>
         <h3>Activez dans MailGuard</h3>
         <p>Dans l'application, cliquez sur "💳 Activer Pro", collez votre clé et c'est activé.</p>
@@ -811,9 +809,9 @@ mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
 const obs2=new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
 },{threshold:0,rootMargin:'0px 0px 0px 0px'});
-document.querySelectorAll('.fade-up').forEach(el=>obs2.observe(el));
+document.querySelectorAll('.fade-in-anim').forEach(el=>obs2.observe(el));
 // Fallback : rendre tout visible après 1s si le navigateur bloque l'observer
-setTimeout(()=>document.querySelectorAll('.fade-up').forEach(el=>el.classList.add('visible')),800);
+setTimeout(()=>document.querySelectorAll('.fade-in-anim').forEach(el=>el.classList.add('visible')),800);
 
 // ══ COUNTER ANIMATION ══════════════════════════════════════
 function animateCount(el){
