@@ -683,7 +683,7 @@ const STRIPE_LINKS = {
 function pay(plan) {
   const url = STRIPE_LINKS[plan];
   if(url && !url.includes('REMPLACER')) {
-    window.open(url, '_blank');
+    window.location.href = url;
   } else {
     alert('Liens Stripe non configurés.\nRemplacez STRIPE_LINKS dans index.html.');
   }
