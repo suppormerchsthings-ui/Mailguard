@@ -534,11 +534,15 @@ footer{background:var(--bg1);border-top:1px solid var(--card-border);padding:56p
     <div class="section-tag fade-in-anim" style="display:block;text-align:center">Téléchargement</div>
     <h2 class="dl-title fade-in-anim" id="dl-title">Commencez maintenant.<br>C'est gratuit.</h2>
     <p class="dl-sub fade-in-anim">100 emails supprimés par jour, accès complet aux filtres, sans carte bancaire.</p>
-    <a href="https://github.com/suppormerchsthings-ui/Mailguard/releases/download/v2.1/MailGuard.exe"
+    <a id="dl-btn"
+       href="https://github.com/suppormerchsthings-ui/Mailguard/releases/latest/download/MailGuard.exe"
        class="btn-primary"
        style="display:inline-flex;position:relative;z-index:10">
       ⬇ &nbsp;Télécharger MailGuard.exe
     </a>
+    <div style="margin-top:10px">
+      <span id="dl-version" style="color:var(--muted);font-size:.75rem;font-family:var(--font-mono)">v2.1</span>
+    </div>
     <div class="dl-badges fade-in-anim">
       <div class="dl-badge"><span>✓</span> Windows 10/11</div>
       <div class="dl-badge"><span>✓</span> Gratuit pour commencer</div>
@@ -861,7 +865,28 @@ function startDownload(){
   setTimeout(()=>{ window.location.href=url; }, 500);
 }
 
-// ══ SMOOTH SCROLL ══════════════════════════════════════════
+// ══ AUTO-VERSION DEPUIS GITHUB ═════════════════════════════
+(async function(){
+  try {
+    const r = await fetch('https://api.github.com/repos/suppormerchsthings-ui/Mailguard/releases/latest');
+    if (!r.ok) return;
+    const data = await r.json();
+    const tag = data.tag_name || '';
+    // Trouver l'asset .exe dans la release
+    const asset = (data.assets||[]).find(a=>a.name.toLowerCase().endsWith('.exe'));
+    const dlUrl = asset
+      ? asset.browser_download_url
+      : 'https://github.com/suppormerchsthings-ui/Mailguard/releases/latest/download/MailGuard.exe';
+    // Mettre à jour le bouton de téléchargement
+    const btn = document.getElementById('dl-btn');
+    if (btn) btn.href = dlUrl;
+    // Mettre à jour le badge de version
+    const ver = document.getElementById('dl-version');
+    if (ver && tag) ver.textContent = tag;
+  } catch(e) {}
+})();
+
+
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{
     const id=a.getAttribute('href').slice(1);
