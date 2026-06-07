@@ -4,34 +4,78 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Changelog — MailGuard</title>
-<meta name="description" content="Historique des versions MailGuard — notes de mise à jour">
+<meta name="description" content="Historique des versions MailGuard — nouvelles fonctionnalités, corrections de bugs, améliorations">
 <meta name="robots" content="index,follow">
-<link rel="canonical" href="https://suppormerchsthings-ui.github.io/Mailguard/">
+<link rel="canonical" href="https://suppormerchsthings-ui.github.io/Mailguard/changelog.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Manrope:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Manrope:wght@400;500&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#03070e;color:#e8f4ff;font-family:'Manrope',sans-serif;line-height:1.7}
 nav a:hover{color:#00b4ff!important}
 footer a:hover{color:#00b4ff!important}
-.page-wrap{max-width:760px;margin:0 auto;padding:120px 24px 60px}
+.page-wrap{max-width:800px;margin:0 auto;padding:120px 24px 80px}
 h1{font-family:'Outfit',sans-serif;font-size:2.2rem;font-weight:800;letter-spacing:-1px;margin-bottom:8px;
-    background:linear-gradient(135deg,#00b4ff,#7c6fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.subtitle{color:#6b8099;margin-bottom:48px;font-size:.95rem}
-h2{font-family:'Outfit',sans-serif;font-size:1.15rem;font-weight:700;color:#e8f4ff;
-    margin:36px 0 12px;padding-left:12px;border-left:3px solid #00b4ff}
-p{color:#8892b0;margin-bottom:14px;font-size:.92rem}
-ul{color:#8892b0;font-size:.92rem;padding-left:20px;margin-bottom:14px}
-ul li{margin-bottom:6px}
+   background:linear-gradient(135deg,#00b4ff,#7c6fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{color:#6b8099;margin-bottom:56px;font-size:.95rem}
+.badge{display:inline-block;background:rgba(0,180,255,.08);border:1px solid rgba(0,180,255,.2);
+       color:#00b4ff;font-size:.75rem;padding:3px 10px;border-radius:50px;margin-bottom:24px;
+       font-family:'Outfit',sans-serif}
+
+/* ── TIMELINE ── */
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;
+                  width:2px;background:linear-gradient(to bottom,#00b4ff,rgba(0,180,255,.08))}
+
+.release{position:relative;margin-bottom:52px}
+.release::before{content:'';position:absolute;left:-33px;top:9px;
+                 width:12px;height:12px;border-radius:50%;
+                 background:#00b4ff;box-shadow:0 0 16px rgba(0,180,255,.5)}
+
+.release-header{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+.version{font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:700;color:#e8f4ff}
+.version-badge{font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:700;
+               padding:3px 10px;border-radius:50px;text-transform:uppercase;letter-spacing:.5px}
+.badge-latest{background:linear-gradient(135deg,#00b4ff,#0077cc);color:#fff}
+.badge-stable{background:rgba(0,230,118,.12);border:1px solid rgba(0,230,118,.3);color:#00e676}
+.badge-patch{background:rgba(108,99,255,.12);border:1px solid rgba(108,99,255,.3);color:#7c6fff}
+.release-date{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#3a5068;margin-left:auto}
+
+.release-card{background:#060d1c;border:1px solid rgba(0,180,255,.12);border-radius:14px;padding:28px}
+.change-group{margin-bottom:20px}
+.change-group:last-child{margin-bottom:0}
+.group-label{display:flex;align-items:center;gap:8px;font-family:'Outfit',sans-serif;
+             font-size:.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+             margin-bottom:12px}
+.dot-new{width:8px;height:8px;border-radius:50%;background:#00b4ff;flex-shrink:0}
+.dot-fix{width:8px;height:8px;border-radius:50%;background:#00e676;flex-shrink:0}
+.dot-improve{width:8px;height:8px;border-radius:50%;background:#7c6fff;flex-shrink:0}
+.dot-security{width:8px;height:8px;border-radius:50%;background:#ff6b35;flex-shrink:0}
+.label-new{color:#00b4ff}
+.label-fix{color:#00e676}
+.label-improve{color:#7c6fff}
+.label-security{color:#ff6b35}
+
+ul.changes{list-style:none;padding:0}
+ul.changes li{font-size:.88rem;color:#8892b0;padding:5px 0 5px 16px;
+              border-left:2px solid rgba(0,180,255,.08);margin-bottom:4px;
+              position:relative}
+ul.changes li strong{color:#c8e0f5}
+ul.changes.fix li{border-left-color:rgba(0,230,118,.1)}
+ul.changes.improve li{border-left-color:rgba(124,111,255,.1)}
+ul.changes.security li{border-left-color:rgba(255,107,53,.1)}
+
+code{font-family:'JetBrains Mono',monospace;font-size:.8rem;
+     background:rgba(0,180,255,.08);color:#00b4ff;padding:1px 6px;border-radius:4px}
+
+.divider{height:1px;background:rgba(0,180,255,.08);margin:20px 0}
+
 a{color:#00b4ff;text-decoration:none}
 a:hover{text-decoration:underline}
-strong{color:#c8e0f5}
-.badge{display:inline-block;background:rgba(0,180,255,.08);border:1px solid rgba(0,180,255,.2);
-        color:#00b4ff;font-size:.75rem;padding:3px 10px;border-radius:50px;margin-bottom:24px;
-        font-family:'Outfit',sans-serif}
 </style>
 </head>
 <body>
+
 <nav id="nav" style="position:fixed;top:0;left:0;right:0;z-index:100;padding:0 6%;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(3,7,14,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,180,255,.12)">
   <a href="index.html" style="display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.2rem;color:#e8f4ff;text-decoration:none">
     <div style="width:32px;height:32px;background:linear-gradient(135deg,#00b4ff,#0077cc);border-radius:9px;display:grid;place-items:center;font-size:16px">✉</div>
@@ -46,43 +90,143 @@ strong{color:#c8e0f5}
 </nav>
 
 <div class="page-wrap">
-  <div class="badge">Versions</div>
-  <h1>Changelog</h1>
-  <p class="subtitle">Historique des mises à jour de MailGuard</p>
+  <div class="badge">Changelog</div>
+  <h1>Historique des versions</h1>
+  <p class="subtitle">Toutes les mises à jour, corrections et améliorations de MailGuard.</p>
 
-  <div style="margin-top:40px">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-      <span style="background:linear-gradient(135deg,#00b4ff,#0077cc);color:#fff;font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:50px;font-family:'Outfit',sans-serif">LATEST</span>
-      <h2 style="border:none;padding:0;margin:0;font-size:1.2rem">v2.1.0</h2>
-      <span style="color:#3a5068;font-size:.8rem">Juin 2026</span>
-    </div>
-    <div style="background:#060d1c;border:1px solid rgba(0,180,255,.15);border-radius:12px;padding:24px;margin-bottom:32px">
-      <ul>
-        <li>✅ Support Gmail + Outlook simultané</li>
-        <li>✅ Système de licence 3 plans (Particulier, Professionnel, Entreprise)</li>
-        <li>✅ Vérification interne avant suppression (emails importants)</li>
-        <li>✅ Auto-updater intégré via GitHub Releases</li>
-        <li>✅ Page OAuth personnalisée MailGuard</li>
-        <li>✅ Filtre intelligent avec détection mots-clés expéditeur</li>
-        <li>✅ Retry automatique 429/timeout API</li>
-        <li>✅ System tray Windows</li>
-      </ul>
+  <div class="timeline">
+
+    <!-- v2.1.0 -->
+    <div class="release">
+      <div class="release-header">
+        <span class="version">v2.1.0</span>
+        <span class="version-badge badge-latest">Latest</span>
+        <span class="release-date">Juin 2026</span>
+      </div>
+      <div class="release-card">
+
+        <div class="change-group">
+          <div class="group-label"><div class="dot-new"></div><span class="label-new">Nouveautés</span></div>
+          <ul class="changes">
+            <li><strong>Support dual simultané</strong> — Outlook (MSAL) et Gmail (Google OAuth2) actifs en même temps dans la même session</li>
+            <li><strong>Auto-updater embarqué</strong> — MailGuard vérifie automatiquement les nouvelles versions au démarrage via GitHub Releases</li>
+            <li><strong>Thread-safety Gmail</strong> — Service Gmail isolé par thread (<code>threading.local</code>) pour éviter les conflits en parallèle</li>
+            <li><strong>Backoff exponentiel 429</strong> — L'app gère automatiquement les limites d'API Microsoft et Google sans crash</li>
+            <li><strong>Icône system tray</strong> — MailGuard reste actif en arrière-plan dans la barre des tâches Windows</li>
+          </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="change-group">
+          <div class="group-label"><div class="dot-fix"></div><span class="label-fix">Corrections</span></div>
+          <ul class="changes fix">
+            <li>Résolution du <code>NameError: gmail_email</code> — déclarations <code>global</code> manquantes ajoutées</li>
+            <li>Correction <code>_show_welcome</code> non défini — fonction réinjectée avant sa première utilisation</li>
+            <li><code>google_credentials.json</code> introuvable au runtime — credentials désormais embarqués dans <code>_GMAIL_CREDS_JSON</code></li>
+            <li>Vérification bloquante <code>_FGCRD.exists()</code> supprimée de <code>_gmail_login_worker</code></li>
+            <li><code>_S.delete</code> timeout non géré — remplacé par le wrapper <code>_api_call()</code> avec retry</li>
+            <li>Taille de police <code>7.5</code> rejetée par Tkinter — corrigée en <code>8</code> (entiers uniquement)</li>
+          </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="change-group">
+          <div class="group-label"><div class="dot-improve"></div><span class="label-improve">Améliorations</span></div>
+          <ul class="changes improve">
+            <li>Site web : correction de l'animation <code>fade-up</code> (<code>opacity:0</code>) — les sections s'affichent correctement avec <code>fade-in-anim</code> + fallback JS</li>
+            <li>Compilation PyInstaller optimisée — tous les imports cachés déclarés explicitement pour l'exe Windows</li>
+            <li>Suppression parallèle portée à <strong>52 threads simultanés</strong> via <code>ThreadPoolExecutor</code></li>
+          </ul>
+        </div>
+
+      </div>
     </div>
 
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-      <h2 style="border:none;padding:0;margin:0;font-size:1.2rem;color:#6b8099">v2.0.0</h2>
-      <span style="color:#3a5068;font-size:.8rem">Mai 2024</span>
+    <!-- v2.0.1 -->
+    <div class="release">
+      <div class="release-header">
+        <span class="version">v2.0.1</span>
+        <span class="version-badge badge-patch">Patch</span>
+        <span class="release-date">Mai 2026</span>
+      </div>
+      <div class="release-card">
+
+        <div class="change-group">
+          <div class="group-label"><div class="dot-fix"></div><span class="label-fix">Corrections</span></div>
+          <ul class="changes fix">
+            <li>Correction du crash au démarrage sur certaines configurations Windows 10 N</li>
+            <li>Timeout de connexion Outlook allongé à 30s pour les connexions lentes</li>
+            <li>Correction du filtre Safe Mode qui ignorait certains sujets en majuscules</li>
+            <li>Suppression définitive non proposée lorsque la corbeille était vide — bouton masqué correctement</li>
+          </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="change-group">
+          <div class="group-label"><div class="dot-improve"></div><span class="label-improve">Améliorations</span></div>
+          <ul class="changes improve">
+            <li>Amélioration des performances de scan sur les boîtes avec plus de 10 000 emails</li>
+            <li>Interface : affichage du compte connecté dans le header de l'app</li>
+          </ul>
+        </div>
+
+      </div>
     </div>
-    <div style="background:#060d1c;border:1px solid rgba(0,180,255,.08);border-radius:12px;padding:24px;margin-bottom:32px">
-      <ul style="color:#3a5068">
-        <li>Version initiale — support Outlook uniquement</li>
-        <li>Filtre intelligent spam/newsletters</li>
-        <li>Interface graphique Tkinter</li>
-        <li>Scan automatique arrière-plan</li>
-      </ul>
+
+    <!-- v2.0.0 -->
+    <div class="release">
+      <div class="release-header">
+        <span class="version">v2.0.0</span>
+        <span class="version-badge badge-stable">Stable</span>
+        <span class="release-date">Avril 2026</span>
+      </div>
+      <div class="release-card">
+
+        <div class="change-group">
+          <div class="group-label"><div class="dot-new"></div><span class="label-new">Nouveautés majeures</span></div>
+          <ul class="changes">
+            <li><strong>Refonte complète de l'interface</strong> — nouveau design sombre, navigation par onglets</li>
+            <li><strong>Compatibilité Gmail</strong> — intégration Google OAuth2 via <code>InstalledAppFlow</code></li>
+            <li><strong>Système de licence à 3 plans</strong> — Particulier / Professionnel / Entreprise</li>
+            <li><strong>Filtre intelligent IA</strong> — score de spam 0–100 basé sur sujet, expéditeur et mots-clés</li>
+            <li><strong>Mode corbeille</strong> — les emails supprimés passent en corbeille avant suppression définitive optionnelle</li>
+            <li><strong>Safe Mode</strong> — protection automatique des emails 2FA, paiements, contrats</li>
+            <li><strong>Scan automatique</strong> — analyse en arrière-plan toutes les 5 minutes</li>
+          </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="change-group">
+          <div class="group-label"><div class="dot-security"></div><span class="label-security">Sécurité</span></div>
+          <ul class="changes security">
+            <li>Authentification 100% OAuth2 — aucun mot de passe stocké par MailGuard</li>
+            <li>Tokens de session chiffrés localement</li>
+            <li>Aucune transmission des emails vers des serveurs tiers</li>
+          </ul>
+        </div>
+
+      </div>
     </div>
+
+    <!-- v1.x -->
+    <div class="release">
+      <div class="release-header">
+        <span class="version">v1.x</span>
+        <span class="version-badge badge-patch">Legacy</span>
+        <span class="release-date">2025</span>
+      </div>
+      <div class="release-card">
+        <p style="color:#3a5068;font-size:.88rem">Version initiale — support Outlook uniquement, interface basique, filtre par mots-clés. Non maintenue, mise à jour vers v2.x recommandée.</p>
+      </div>
+    </div>
+
   </div>
 </div>
+
 <footer style="background:#060d1c;border-top:1px solid rgba(0,180,255,.1);padding:40px 6%;margin-top:80px">
   <div style="max-width:1000px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
     <div style="font-family:'Outfit',sans-serif;font-weight:800;color:#00b4ff;font-size:1.1rem">✉ MailGuard</div>
@@ -95,4 +239,6 @@ strong{color:#c8e0f5}
     </div>
     <div style="color:#3a5068;font-size:.78rem">© 2026 MailGuard · Tous droits réservés</div>
   </div>
-</footer></body></html>
+</footer>
+</body>
+</html>
