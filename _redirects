@@ -1,0 +1,3 @@
+/download /download.html 200
+/MailGuard.exe https://github.com/suppormerchsthings-ui/Mailguard/releases/download/v2.1/MailGuard.exe 302
+http://mailguardv2-1.netlify.app/* https://mailguardv2-1.netlify.app/:splat 301!

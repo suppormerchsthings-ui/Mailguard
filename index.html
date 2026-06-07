@@ -8,12 +8,12 @@
 <meta name="keywords" content="nettoyeur email, anti-spam, supprimer emails, gmail, outlook, mailguard, filtre email, protection mail">
 <meta name="author" content="MailGuard">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://mailguardv2-1.netlify.app/">
+<link rel="canonical" href="https://suppormerchsthings-ui.github.io/Mailguard/">
 <meta property="og:title" content="MailGuard — Zéro spam, zéro scam">
 <meta property="og:description" content="Votre boîte mail mérite une armure. Filtrage intelligent, suppression automatique, compatible Outlook et Gmail.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://mailguard.fr/">
-<meta property="og:image" content="https://mailguard.fr/og.png">
+<meta property="og:url" content="https://suppormerchsthings-ui.github.io/Mailguard/">
+<meta property="og:image" content="https://suppormerchsthings-ui.github.io/Mailguard/og.png">
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="MailGuard — Protection email intelligente">
@@ -244,7 +244,8 @@ section{padding:96px 6%}
         border:1px solid var(--card-border);border-radius:20px;
         padding:72px 48px;max-width:700px;margin:0 auto;position:relative;overflow:hidden}
 .dl-box::before{content:'';position:absolute;inset:0;
-                background:radial-gradient(circle at 50% 0%,rgba(0,180,255,.08),transparent 60%)}
+                background:radial-gradient(circle at 50% 0%,rgba(0,180,255,.08),transparent 60%);
+                pointer-events:none}
 .dl-glow{position:absolute;top:-80px;left:50%;transform:translateX(-50%);
          width:300px;height:160px;
          background:radial-gradient(ellipse,rgba(0,180,255,.15),transparent);
@@ -531,11 +532,9 @@ footer{background:var(--bg1);border-top:1px solid var(--card-border);padding:56p
     <div class="section-tag fade-up" style="display:block;text-align:center">Téléchargement</div>
     <h2 class="dl-title fade-up" id="dl-title">Commencez maintenant.<br>C'est gratuit.</h2>
     <p class="dl-sub fade-up">100 emails supprimés par jour, accès complet aux filtres, sans carte bancaire.</p>
-    <a href="https://github.com/suppormerchsthings-ui/Mailguard/releases/download/v2.1/MailGuard.exe"
-       class="btn-primary fade-up"
-       style="display:inline-flex"
-       aria-label="Télécharger MailGuard pour Windows"
-       target="_blank" rel="noopener">
+    <a href="/MailGuard.exe"
+       class="btn-primary"
+       style="display:inline-flex;position:relative;z-index:10">
       ⬇ &nbsp;Télécharger MailGuard.exe
     </a>
     <div class="dl-badges fade-up">
@@ -653,21 +652,21 @@ footer{background:var(--bg1);border-top:1px solid var(--card-border);padding:56p
       <h4>Support</h4>
       <a href="#faq">FAQ</a>
       <a href="mailto:contact@mailguard.fr">Contact</a>
-      <a href="/changelog">Changelog</a>
+      <a href="/changelog.html">Changelog</a>
     </div>
     <div class="footer-col">
       <h4>Légal</h4>
-      <a href="/privacy">Politique de confidentialité</a>
-      <a href="/terms">Conditions d'utilisation</a>
-      <a href="/refund">Remboursement</a>
+      <a href="/privacy.html">Politique de confidentialité</a>
+      <a href="/terms.html">Conditions d'utilisation</a>
+      <a href="/refund.html">Remboursement</a>
     </div>
   </div>
   <div class="footer-bottom">
     <span>© 2024 MailGuard. Tous droits réservés.</span>
     <div class="ssl-badge">🔒 SSL · Stripe · OAuth2 sécurisé</div>
     <div>
-      <a href="/privacy">Confidentialité</a> &nbsp;·&nbsp;
-      <a href="/terms">CGU</a>
+      <a href="/privacy.html">Confidentialité</a> &nbsp;·&nbsp;
+      <a href="/terms.html">CGU</a>
     </div>
   </div>
 </footer>
@@ -841,6 +840,17 @@ document.querySelectorAll('.faq-q').forEach(q=>{
   q.addEventListener('click',toggle);
   q.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault();toggle(); }});
 });
+
+// ══ TÉLÉCHARGEMENT
+function startDownload(){
+  const url='https://github.com/suppormerchsthings-ui/Mailguard/releases/latest/download/MailGuard.exe';
+  const a=document.createElement('a');
+  a.href=url; a.download='MailGuard.exe';
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a);
+  // Fallback si le clic ne déclenche pas le téléchargement
+  setTimeout(()=>{ window.location.href=url; }, 500);
+}
 
 // ══ SMOOTH SCROLL ══════════════════════════════════════════
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
